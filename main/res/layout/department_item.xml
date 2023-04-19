@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/white">
+    <ImageView
+        android:id="@+id/image_department"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/taikham"/>
+    <TextView
+        android:id="@+id/name_department"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên khoa"
+        android:textColor="@color/black"
+        android:textSize="18dp"/>
+</LinearLayout>
