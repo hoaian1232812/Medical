@@ -1,120 +1,74 @@
 package com.example.medical.model;
 
-
-import java.io.Serializable;
-import java.time.LocalTime;
 import java.util.List;
-import java.util.Objects;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-
-public class TimeSlot implements Serializable {
-
-    private int id;
-    private LocalTime start;
-    private LocalTime end;
-    private String work_shift;
-    private int available_slot;
-
-    private Schedule schedule;
+public class TimeSlot {
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("start_work")
+    @Expose
+    private String startWork;
+    @SerializedName("end_work")
+    @Expose
+    private String endWork;
+    @SerializedName("work_shift")
+    @Expose
+    private Object workShift;
+    @SerializedName("available_slot")
+    @Expose
+    private Integer availableSlot;
+    @SerializedName("appointments")
+    @Expose
     private List<Appointment> appointments;
 
-    public TimeSlot(int id, LocalTime start, LocalTime end, String work_shift, int available_slot, Schedule schedule) {
-        this.id = id;
-        this.start = start;
-        this.end = end;
-        this.work_shift = work_shift;
-        this.available_slot = available_slot;
-        this.schedule = schedule;
-    }
-
-    public TimeSlot(int id, LocalTime start, LocalTime end, int available_slot, Schedule schedule) {
-        this.id = id;
-        this.start = start;
-        this.end = end;
-        this.available_slot = available_slot;
-        this.schedule = schedule;
-    }
-
-    public TimeSlot(int id, String work_shift, int available_slot) {
-        this.id = id;
-        this.work_shift = work_shift;
-        this.available_slot = available_slot;
-    }
-
-    public TimeSlot() {
-
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public LocalTime getStart() {
-        return start;
+    public String getStartWork() {
+        return startWork;
     }
 
-    public void setStart(LocalTime start) {
-        this.start = start;
+    public void setStartWork(String startWork) {
+        this.startWork = startWork;
     }
 
-    public LocalTime getEnd() {
-        return end;
+    public String getEndWork() {
+        return endWork;
     }
 
-    public void setEnd(LocalTime end) {
-        this.end = end;
+    public void setEndWork(String endWork) {
+        this.endWork = endWork;
     }
 
-    public String getWork_shift() {
-        return work_shift;
+    public Object getWorkShift() {
+        return workShift;
     }
 
-    public void setWork_shift(String work_shift) {
-        this.work_shift = work_shift;
+    public void setWorkShift(Object workShift) {
+        this.workShift = workShift;
     }
 
-    public int getAvailable_slot() {
-        return available_slot;
+    public Integer getAvailableSlot() {
+        return availableSlot;
     }
 
-    public void setAvailable_slot(int available_slot) {
-        this.available_slot = available_slot;
+    public void setAvailableSlot(Integer availableSlot) {
+        this.availableSlot = availableSlot;
     }
 
-    public Schedule getSchedule() {
-        return schedule;
+    public List<Appointment> getAppointments() {
+        return appointments;
     }
 
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
-
-    @Override
-    public String toString() {
-        return "TimeSlot{" +
-                "id=" + id +
-                ", start=" + start +
-                ", end=" + end +
-                ", work_shift='" + work_shift + '\'' +
-                ", available_slot=" + available_slot +
-                ", schedule=" + schedule +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TimeSlot timeSlot = (TimeSlot) o;
-        return id == timeSlot.id && available_slot == timeSlot.available_slot && Objects.equals(start, timeSlot.start) && Objects.equals(end, timeSlot.end) && Objects.equals(work_shift, timeSlot.work_shift) && Objects.equals(schedule, timeSlot.schedule);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, start, end, work_shift, available_slot, schedule);
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
     }
 }

@@ -1,18 +1,16 @@
 package com.example.medical;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.medical.adapter.DepartmentAdapter;
 import com.example.medical.model.Department;
-import com.example.medical.service.ApiService;
-import com.example.medical.service.Service;
+import com.example.medical.service.ApiClient;
 
 import java.util.List;
 
@@ -23,36 +21,36 @@ import retrofit2.Response;
 public class DepartmentList extends AppCompatActivity {
     RecyclerView recyclerView;
     DepartmentAdapter adapter;
-    Service service;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_department_list);
-        RecyclerView.LayoutManager layout = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layout = new LinearLayoutManager(DepartmentList.this);
         recyclerView = findViewById(R.id.department_list);
         recyclerView.setLayoutManager(layout);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        adapter = new DepartmentAdapter();
         showList();
+
     }
 
-    private void showList(){
-        service = new Service();
-        ApiService apiService = service.createRetrofit("http://localhost:8080/");
-        Call<List<Department>> call = apiService.listDepartment();
-        call.enqueue(new Callback<List<Department>>() {
+    private void showList() {
+        Call<List<Department>> departments = ApiClient.getApiService().getAll();
+        departments.enqueue(new Callback<List<Department>>() {
             @Override
             public void onResponse(Call<List<Department>> call, Response<List<Department>> response) {
-                if(response.isSuccessful()) {
+                if(response.isSuccessful()){
                     List<Department> departments = response.body();
-                    adapter = new DepartmentAdapter(departments);
+                    adapter.setData(departments);
                     recyclerView.setAdapter(adapter);
-                    Log.d("Size", ""+departments.size());
                 }
             }
 
             @Override
             public void onFailure(Call<List<Department>> call, Throwable t) {
-
+                Log.e("fail", t.getLocalizedMessage());
             }
         });
     }

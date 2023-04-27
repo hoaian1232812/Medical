@@ -2,19 +2,33 @@ package com.example.medical.model;
 
 
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.sql.Date;
 import java.util.List;
 
 public class Patient {
-
+    @SerializedName("id")
+    @Expose
     private String id;
+    @SerializedName("phone")
+    @Expose
     private String phone;
+    @SerializedName("name")
+    @Expose
     private String name;
-
+    @SerializedName("birth")
+    @Expose
     private Date birth;
+    @SerializedName("gender")
+    @Expose
     private int gender;
+    @SerializedName("address")
+    @Expose
     private String address;
-
+    @SerializedName("appointments")
+    @Expose
     private List<Appointment> appointments;
     public Patient() {
     }

@@ -2,63 +2,41 @@ package com.example.medical.model;
 
 
 
-import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+
 import java.util.List;
-import java.util.Objects;
 
+public class Schedule {
 
-public class Schedule implements Serializable {
-
-    private int id;
-
-    private Date work_date;
-
-    private Doctor doctor;
-
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("work_date")
+    @Expose
+    private String workDate;
+    @SerializedName("timeSlots")
+    @Expose
     private List<TimeSlot> timeSlots;
-
+    @SerializedName("appointments")
+    @Expose
     private List<Appointment> appointments;
-    public Schedule() {
-    }
 
-    public Schedule(int id, Date work_date, Doctor doctor) {
-        this.id = id;
-        this.work_date = work_date;
-        this.doctor = doctor;
-        this.timeSlots = new ArrayList<>();
-    }
-
-    public Schedule(int id, Date work_date, Doctor doctor, List<TimeSlot> timeSlots) {
-        this.id = id;
-        this.work_date = work_date;
-        this.doctor = doctor;
-        this.timeSlots = timeSlots;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Date getWork_date() {
-        return work_date;
+    public String getWorkDate() {
+        return workDate;
     }
 
-    public void setWork_date(Date work_date) {
-        this.work_date = work_date;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setWorkDate(String workDate) {
+        this.workDate = workDate;
     }
 
     public List<TimeSlot> getTimeSlots() {
@@ -69,26 +47,12 @@ public class Schedule implements Serializable {
         this.timeSlots = timeSlots;
     }
 
-    @Override
-    public String toString() {
-        return "Schedule{" +
-                "id=" + id +
-                ", work_date=" + work_date +
-                ", doctor=" + doctor +
-                ", timeSlots=" + timeSlots +
-                '}';
+    public List<Appointment> getAppointments() {
+        return appointments;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Schedule schedule = (Schedule) o;
-        return id == schedule.id && Objects.equals(work_date, schedule.work_date) && Objects.equals(doctor, schedule.doctor) && Objects.equals(timeSlots, schedule.timeSlots);
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, work_date, doctor, timeSlots);
-    }
 }

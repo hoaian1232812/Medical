@@ -1,21 +1,34 @@
 package com.example.medical.model;
 
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 
-public class Appointment implements Serializable {
+public class Appointment{
 
+    @SerializedName("id")
+    @Expose
     private int id;
+    @SerializedName("status")
+    @Expose
     private int status;
+    @SerializedName("description")
+    @Expose
     private String description;
-
+    @SerializedName("patient")
+    @Expose
     private Patient patient;
-
+    @SerializedName("doctor")
+    @Expose
     private Doctor doctor;
-
+    @SerializedName("schedule")
+    @Expose
     private Schedule schedule;
-
+    @SerializedName("timeSlot")
+    @Expose
     private TimeSlot timeSlot;
 
     public Appointment() {

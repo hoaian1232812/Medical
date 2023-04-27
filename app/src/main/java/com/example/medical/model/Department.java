@@ -1,48 +1,31 @@
 package com.example.medical.model;
 
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+public class Department{
 
-public class Department implements Serializable {
-
+    @SerializedName("id")
+    @Expose
     private String id;
-
-    private String url;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("decription")
+    @Expose
     private String decription;
-
+    @SerializedName("url")
+    @Expose
+    private String url;
+    @SerializedName("doctors")
+    @Expose
     private List<Doctor> doctors;
-
-    public Department() {
-    }
-
-    public Department(String id, String url, String name, String decription) {
-        this.id = id;
-        this.url = url;
-        this.name = name;
-        this.decription = decription;
-        this.doctors = new ArrayList<>();
-    }
-
-    public Department(String id, String url, String name, String decription, List<Doctor> doctors) {
-        this.id = id;
-        this.url = url;
-        this.name = name;
-        this.decription = decription;
-        this.doctors = doctors;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     public String getId() {
         return id;
@@ -64,6 +47,18 @@ public class Department implements Serializable {
         return decription;
     }
 
+    public void setDecription(String decription) {
+        this.decription = decription;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public List<Doctor> getDoctors() {
         return doctors;
     }
@@ -72,31 +67,15 @@ public class Department implements Serializable {
         this.doctors = doctors;
     }
 
-    public void setDecription(String decription) {
-        this.decription = decription;
-    }
-
     @Override
     public String toString() {
         return "Department{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", decription='" + decription + '\'' +
+                ", url='" + url + '\'' +
                 ", doctors=" + doctors +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Department that = (Department) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(decription, that.decription) && Objects.equals(doctors, that.doctors);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, decription, doctors);
     }
 }
 
