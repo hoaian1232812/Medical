@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.medical.DoctorInfo;
+import com.example.medical.DoctorList;
 import com.example.medical.R;
 import com.example.medical.model.Department;
 
@@ -44,11 +45,14 @@ public class DepartmentAdapter extends RecyclerView.Adapter<DepartmentAdapter.De
         Department department = departments.get(position);
         Glide.with(holder.image.getContext()).load(department.getUrl()).into(holder.image);
         holder.name.setText(department.getName());
-
+          /*
+            use case 2 Đăng ký lịch khám mới
+            5. Chọn một khoa
+         */
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), DoctorInfo.class);
+                Intent intent = new Intent(view.getContext(), DoctorList.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("id", department.getId());
                 bundle.putString("name", department.getName());

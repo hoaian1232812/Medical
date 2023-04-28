@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".AppointmentForm">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#61DDDDDD"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image_form"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/round_image_view"
+            android:src="@drawable/test" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ĐĂNG KÝ KHÁM"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/name_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên khoa"
+                android:textColor="@color/teal_200"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/time_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên khoa"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/price_form"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GIÁ KHÁM: "
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Miễn phí đặt khám"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black">
+
+        <EditText
+            android:id="@+id/name_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="name"
+            android:background="@drawable/edit_text_boder"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="8dp"
+            android:hint="Họ tên bệnh nhân (bắt buộc)"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <RadioGroup
+            android:id="@+id/gender_radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/male_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nam"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/female_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nữ"
+                android:textColor="@color/black" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/phone_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints="phone"
+            android:background="@drawable/edit_text_boder"
+            android:digits="0123456789"
+            android:drawableStart="@drawable/phone"
+            android:drawablePadding="8dp"
+            android:hint="Số điện thoại liên hệ (bắt buộc)"
+            android:inputType="number"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <TextView
+            android:id="@+id/birth_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_boder"
+            android:drawableStart="@drawable/birth"
+            android:drawablePadding="8dp"
+            android:hint="Ngày/tháng/năm sinh (bắt buộc)"
+            android:inputType="datetime"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/city_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_boder"
+            android:drawableStart="@drawable/location"
+            android:drawablePadding="8dp"
+            android:hint="Tỉnh/Thành phố (bắt buộc)"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/quan_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_boder"
+            android:drawableStart="@drawable/location"
+            android:drawablePadding="8dp"
+            android:hint="Quận/huyện (bắt buộc)"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/phuong_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_boder"
+            android:drawableStart="@drawable/location"
+            android:drawablePadding="8dp"
+            android:hint="Phường/xã (bắt buộc)"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/address_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_boder"
+            android:drawableStart="@drawable/location"
+            android:drawablePadding="8dp"
+            android:hint="Địa chỉ (bắt buột)"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/note_edit"
+            android:layout_width="match_parent"
+            android:layout_height="94dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_boder"
+            android:drawablePadding="8dp"
+            android:hint="Lý do khám"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLines="5"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Xác nhận đặt khám" />
+    </LinearLayout>
+</LinearLayout>

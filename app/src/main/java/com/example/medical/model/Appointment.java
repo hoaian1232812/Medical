@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 
-public class Appointment{
+public class Appointment {
 
     @SerializedName("id")
     @Expose
@@ -34,8 +34,7 @@ public class Appointment{
     public Appointment() {
     }
 
-    public Appointment(int id, int status, String description, Patient patient, Doctor doctor, Schedule schedule, TimeSlot timeSlot) {
-        this.id = id;
+    public Appointment(int status, String description, Patient patient, Doctor doctor, Schedule schedule, TimeSlot timeSlot) {
         this.status = status;
         this.description = description;
         this.patient = patient;

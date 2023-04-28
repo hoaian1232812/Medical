@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/timeSlot"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textStyle="bold"
+    android:textColor="@color/black"
+    android:textSize="15dp"
+    android:text="3:30-4:00"
+    android:layout_marginRight="10dp"
+    android:background="#92DDDDDD"
+    android:padding="4dp"/>

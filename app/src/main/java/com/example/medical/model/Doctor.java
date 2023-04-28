@@ -8,9 +8,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 
-public class Doctor {
+public class Doctor implements Serializable {
     @SerializedName("id")
     @Expose
     private String id;
@@ -125,6 +126,18 @@ public class Doctor {
                 ", schedules=" + schedules +
                 ", appointments=" + appointments +
                 '}';
+    }
+
+    public String[] getWorkDate() {
+        String[] result = new String[this.schedules.size()];
+        for (int i = 0; i < result.length; i++) {
+            StringTokenizer st = new StringTokenizer(this.schedules.get(i).getWorkDate(), "-");
+            String year = st.nextToken();
+            String month = st.nextToken();
+            String day = st.nextToken();
+            result[i] = day + "-" + month + "-" + year;
+        }
+        return result;
     }
 }
 

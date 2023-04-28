@@ -1,10 +1,12 @@
 package com.example.medical.model;
 
+import java.io.Serializable;
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class TimeSlot {
+public class TimeSlot implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -16,7 +18,7 @@ public class TimeSlot {
     private String endWork;
     @SerializedName("work_shift")
     @Expose
-    private Object workShift;
+    private String workShift;
     @SerializedName("available_slot")
     @Expose
     private Integer availableSlot;
@@ -48,11 +50,11 @@ public class TimeSlot {
         this.endWork = endWork;
     }
 
-    public Object getWorkShift() {
+    public String getWorkShift() {
         return workShift;
     }
 
-    public void setWorkShift(Object workShift) {
+    public void setWorkShift(String workShift) {
         this.workShift = workShift;
     }
 
@@ -70,5 +72,13 @@ public class TimeSlot {
 
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+    public String getTime() {
+        String start = this.startWork;
+        String end = this.endWork;
+        if (this.workShift != null)
+            return this.workShift + start.substring(0, start.lastIndexOf(":")) + " - " + end.substring(0, end.lastIndexOf(":"));
+        return start.substring(0, start.lastIndexOf(":")) + " - " + end.substring(0, end.lastIndexOf(":"));
     }
 }

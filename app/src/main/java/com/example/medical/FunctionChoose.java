@@ -16,7 +16,7 @@ public class FunctionChoose extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_function_choose);
-            /*
+        /*
         use case 2 Đăng ký lịch khám mới
         3. Chọn chức năng đăng ký lịch khám mới
         */

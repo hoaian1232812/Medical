@@ -1,7 +1,6 @@
 package com.example.medical.model;
 
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -24,21 +23,34 @@ public class Patient {
     @SerializedName("gender")
     @Expose
     private int gender;
+    @SerializedName("city")
+    @Expose
+    private String city;
+    @SerializedName("district")
+    @Expose
+    private String district;
+    @SerializedName("ward")
+    @Expose
+    private String ward;
     @SerializedName("address")
     @Expose
     private String address;
     @SerializedName("appointments")
     @Expose
     private List<Appointment> appointments;
+
     public Patient() {
     }
 
-    public Patient(String id, String phone, String name, Date birth, int gender, String address) {
+    public Patient(String id, String phone, String name, Date birth, int gender, String city, String district, String ward, String address) {
         this.id = id;
         this.phone = phone;
         this.name = name;
         this.birth = birth;
         this.gender = gender;
+        this.city = city;
+        this.district = district;
+        this.ward = ward;
         this.address = address;
     }
 
@@ -88,5 +100,29 @@ public class Patient {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getWard() {
+        return ward;
+    }
+
+    public void setWard(String ward) {
+        this.ward = ward;
     }
 }

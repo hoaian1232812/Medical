@@ -6,9 +6,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Schedule {
+public class Schedule implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -53,6 +54,16 @@ public class Schedule {
 
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "id=" + id +
+                ", workDate='" + workDate + '\'' +
+                ", timeSlots=" + timeSlots +
+                ", appointments=" + appointments +
+                '}';
     }
 
 }

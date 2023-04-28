@@ -16,6 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".AppointmentForm"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorList"
+            android:exported="false" />
+        <activity
             android:name=".DoctorInfo"
             android:exported="false" />
         <activity
