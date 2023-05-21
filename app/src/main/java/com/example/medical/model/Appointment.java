@@ -98,4 +98,17 @@ public class Appointment {
     public void setTimeSlot(TimeSlot timeSlot) {
         this.timeSlot = timeSlot;
     }
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "id=" + id +
+                ", status=" + status +
+                ", description='" + description + '\'' +
+                ", patient=" + patient +
+                ", doctor=" + doctor +
+                ", schedule=" + schedule +
+                ", timeSlot=" + timeSlot +
+                '}';
+    }
 }

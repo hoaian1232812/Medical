@@ -30,15 +30,16 @@ public interface ApiService {
     @GET("/api/v1/Doctors/{departmentId}")
     Call<List<Doctor>> getAllDoctorByDepartmentId(@Path("departmentId") String departmentId);
 
-    @POST("/api/v1/savePatient")
+    @POST("/api/v1/patients")
     Call<Patient> addPatientDB(@Body Patient patient);
 
-    @GET("/api/v1/Patient/{id}")
+    @GET("/api/v1/patients/{id}")
     Call<ResponseObject> getPatientById(@Path("id") String id);
+
     /*
        use case 2 Đăng ký lịch khám mới
-       16. Post: api/v1/
+       16. Post: api/v1/appointments
      */
-    @POST("/api/v1/saveAppointment")
+    @POST("/api/v1/appointments")
     Call<Appointment> addDB(@Body Appointment appointment);
 }

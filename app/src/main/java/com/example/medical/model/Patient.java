@@ -4,7 +4,7 @@ package com.example.medical.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public class Patient {
@@ -125,4 +125,5 @@ public class Patient {
     public void setWard(String ward) {
         this.ward = ward;
     }
+
 }

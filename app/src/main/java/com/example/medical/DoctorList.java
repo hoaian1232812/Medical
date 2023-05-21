@@ -44,6 +44,7 @@ public class DoctorList extends AppCompatActivity {
         deDepartment = findViewById(R.id.dec_department_doctor);
         deDepartment.setText(bundle.getString("dec"));
         RecyclerView.LayoutManager layout = new LinearLayoutManager(this);
+
         recyclerView = findViewById(R.id.doctor_list);
         recyclerView.setLayoutManager(layout);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));

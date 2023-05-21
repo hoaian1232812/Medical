@@ -26,7 +26,7 @@ import com.example.medical.model.Schedule;
 import com.example.medical.model.TimeSlot;
 import com.example.medical.service.ApiClient;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -62,10 +62,7 @@ public class AppointmentForm extends AppCompatActivity {
         schedule = (Schedule) bundle.get("schedule");
         timeSlot = (TimeSlot) bundle.get("time");
         img = findViewById(R.id.image_form);
-        Glide.with(img.getContext())
-                .load(doctor.getUrlPhoto())
-                .transform(new CircleCrop())
-                .into(img);
+        Glide.with(img.getContext()).load(doctor.getUrlPhoto()).transform(new CircleCrop()).into(img);
         nameForm = findViewById(R.id.name_form);
         nameForm.setText(doctor.getEducation() + " " + doctor.getName());
         timeForm = findViewById(R.id.time_form);
@@ -105,20 +102,18 @@ public class AppointmentForm extends AppCompatActivity {
             int month = calendar.get(Calendar.MONTH);
             int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-            DatePickerDialog datePickerDialog = new DatePickerDialog(AppointmentForm.this,
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            String newMonth;
-                            if (month + 1 < 10)
-                                newMonth = "0" + (month + 1);
-                            else {
-                                newMonth = "" + (month + 1);
-                            }
-                            String date = year + "-" + newMonth + "-" + dayOfMonth;
-                            birthEdit.setText(date);
-                        }
-                    }, year, month, day);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(AppointmentForm.this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    String newMonth;
+                    if (month + 1 < 10) newMonth = "0" + (month + 1);
+                    else {
+                        newMonth = "" + (month + 1);
+                    }
+                    String date = year + "-" + newMonth + "-" + dayOfMonth;
+                    birthEdit.setText(date);
+                }
+            }, year, month, day);
             datePickerDialog.show();
         });
         cityEdit = findViewById(R.id.city_edit);
@@ -128,17 +123,16 @@ public class AppointmentForm extends AppCompatActivity {
         noteEdit = findViewById(R.id.note_edit);
         button = findViewById(R.id.button);
         button.setOnClickListener(v -> {
-            if (checlInfo(nameEdit.getText().toString(), gender, phoneEdit.getText().toString(),
-                    birthEdit.getText().toString(), cityEdit.getText().toString(),
-                    districtEdit.getText().toString(), wardEdit.getText().toString(),
-                    addressEdit.getText().toString())) {
-                Date birthDate = Date.valueOf(birthEdit.getText().toString());
-                Patient patient = new Patient("BN-" + nameEdit.getText().toString() + "-" + phoneEdit.getText().toString(),
-                        phoneEdit.getText().toString(), nameEdit.getText().toString()
-                        , birthDate, gender, cityEdit.getText().toString(), districtEdit.getText().toString(),
-                        wardEdit.getText().toString(), addressEdit.getText().toString());
+            if (checlInfo(nameEdit.getText().toString(), gender, phoneEdit.getText().toString(), birthEdit.getText().toString(), cityEdit.getText().toString(), districtEdit.getText().toString(), wardEdit.getText().toString(), addressEdit.getText().toString())) {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date birthDate;
+                try {
+                    birthDate = format.parse(birthEdit.getText().toString());
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                Patient patient = new Patient("BN-" + nameEdit.getText().toString() + "-" + phoneEdit.getText().toString(), phoneEdit.getText().toString(), nameEdit.getText().toString(), birthDate, gender, cityEdit.getText().toString(), districtEdit.getText().toString(), wardEdit.getText().toString(), addressEdit.getText().toString());
                 checkPatient(patient);
-
             } else {
                 Toast.makeText(v.getContext(), "Thông tin không chính xác", Toast.LENGTH_SHORT).show();
             }
@@ -192,10 +186,29 @@ public class AppointmentForm extends AppCompatActivity {
         call.enqueue(new Callback<ResponseObject>() {
             @Override
             public void onResponse(Call<ResponseObject> call, Response<ResponseObject> response) {
-                if (response.body() == null) {
+                if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
+                    Toast.makeText(AppointmentForm.this, "checkPatient bị Lỗi", Toast.LENGTH_LONG).show();
+                    Appointment a = new Appointment();
+                    a.setStatus(1);
+                    a.setPatient(patient);
+                    a.setDoctor(doctor);
+                    a.setDescription("benh");
+                    a.setSchedule(schedule);
+                    a.setTimeSlot(timeSlot);
+                    Log.e("Lỗi", a.toString());
+                    saveAppointment(a);
+                } else {
+                    Log.e("Loi", patient.toString());
                     savePatient(patient);
+                    Appointment a = new Appointment();
+                    a.setStatus(1);
+                    a.setPatient(patient);
+                    a.setDoctor(doctor);
+                    a.setDescription("benh");
+                    a.setSchedule(schedule);
+                    a.setTimeSlot(timeSlot);
+                    saveAppointment(a);
                 }
-                saveAppointment(new Appointment(0, noteEdit.getText().toString(), patient, doctor, schedule, timeSlot));
             }
 
             @Override
@@ -231,7 +244,7 @@ public class AppointmentForm extends AppCompatActivity {
             public void onResponse(Call<Appointment> call, Response<Appointment> response) {
                     /*
                       use case 2 Đăng ký lịch khám mới
-                     16.2
+                     16.2 Toast.makeText().show()
                     */
                 Toast.makeText(AppointmentForm.this, "Đặt lịch khám thành công", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(AppointmentForm.this, MainActivity.class);
