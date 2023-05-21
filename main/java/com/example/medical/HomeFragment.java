@@ -32,8 +32,16 @@ public class HomeFragment extends Fragment {
             Intent intent = new Intent(root.getContext(),FunctionChoose.class);
             startActivity(intent);
         });
+// use case xem lịch sử khám bệnh
+        LinearLayout layout2 = root.findViewById(R.id.lskb);
+        layout2.setOnClickListener(v ->{
+            Intent intent = new Intent(root.getContext(),history.class);
+            startActivity(intent);
+        });
+
         return root;
     }
+
 
     @Override
     public void onDestroyView() {
